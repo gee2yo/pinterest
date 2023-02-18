@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import React, { useState } from "react";
 import styled from "styled-components";
 import SignUp from "../components/bottom/SignUp";
@@ -8,6 +9,21 @@ export default function Bottom() {
 
   const toggleSignUp = () => {
     setViewPerson(!viewPerson);
+  };
+
+  const botImgRendering = () => {
+    const result = [];
+    for (let i = 1; i <= 28; i++) {
+      result.push(
+        <div className="imgFrame">
+          <img
+            src={`${process.env.PUBLIC_URL}/images/botImg/botImg${i}.jpeg`}
+            alt={`배경이미지${i}`}
+          />
+        </div>
+      );
+    }
+    return result;
   };
 
   return (
@@ -24,191 +40,9 @@ export default function Bottom() {
           )}
         </article>
       </div>
-      <div className="bg">
-        <div className="bg-wrap">
-          <div className="columns col1">
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-          </div>
-          <div className="columns col2">
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-          </div>
-          <div className="columns col3">
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-          </div>
-          <div className="columns col4">
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-          </div>
-          <div className="columns col5">
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-          </div>
-          <div className="columns col6">
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-          </div>
-          <div className="columns col7">
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-            <div>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/botImg01.jpg`}
-                alt="img1"
-              />
-            </div>
-          </div>
-        </div>
+      <div className="bgImg">
+        <div className="bgBlack" />
+        <div className="bgWrap">{botImgRendering()}</div>
       </div>
     </StyledBottom>
   );
@@ -218,7 +52,8 @@ const StyledBottom = styled.section`
   position: relative;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(0, 0, 0, 0.5);
+  background-color: rgb(0, 0, 0, 0.6);
+  overflow: hidden;
 
   .bottom-wrap {
     display: flex;
@@ -226,7 +61,6 @@ const StyledBottom = styled.section`
     align-items: center;
     width: 100%;
     height: 100%;
-
     .bottom-left {
       flex-basis: 50%;
       display: flex;
@@ -250,7 +84,7 @@ const StyledBottom = styled.section`
     }
   }
 
-  .bg {
+  .bgImg {
     width: 100vw;
     position: absolute;
     display: flex;
@@ -258,30 +92,50 @@ const StyledBottom = styled.section`
     top: 0;
     z-index: -1;
 
-    .bg-wrap {
-      display: flex;
+    .bgWrap {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      .imgFrame {
+        width: 236px;
+        height: 350px;
+        border-radius: 16px;
+        overflow: hidden;
+        margin: 8px;
 
-      .columns {
-        display: flex;
-        flex-direction: column;
-        div {
-          width: 236px;
-          height: 350px;
-          border-radius: 16px;
-          overflow: hidden;
-          margin: 8px;
-          &:first-child {
-            margin-top: 16px;
-          }
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-          }
+        &:nth-child(2),
+        &:nth-child(9),
+        &:nth-child(16),
+        &:nth-child(23),
+        &:nth-child(6),
+        &:nth-child(13),
+        &:nth-child(20),
+        &:nth-child(27) {
+          transform: translateY(-50%);
         }
-      }
-      .col2 {
-        transform: translateY(-183px);
+
+        &:nth-child(3),
+        &:nth-child(10),
+        &:nth-child(17),
+        &:nth-child(24),
+        &:nth-child(5),
+        &:nth-child(12),
+        &:nth-child(19),
+        &:nth-child(26) {
+          transform: translateY(-75%);
+        }
+
+        &:nth-child(4),
+        &:nth-child(11),
+        &:nth-child(18),
+        &:nth-child(25) {
+          transform: translateY(-16.67%);
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
     }
   }
