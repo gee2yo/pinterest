@@ -4,10 +4,68 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 export default function SignUp({ toggleSignUp }) {
+  const [ageValue, setAgeValue] = useState("");
+  const handleAge = (e) => {
+    setAgeValue(e.target.value);
+  };
+  // // 이메일 input 입력값 -> state에 저장
+  // const [emailValue, setEmailValue] = useState("");
+  // const [ageValue, setAgeValue] = useState("");
+
+  // const handleEmail = (e) => {
+  //   setEmailValue(e.target.value);
+  // };
+
+  // // 비밀번호 input 입력값 -> state에 저장
+  // const [pwValue, setPwValue] = useState("");
+  // const handlePw = (e) => {
+  //   setPwValue(e.target.value);
+  // }
+
+  // 비밀번호 보이기/숨기기 아이콘
   const [ispwView, setIsPwView] = useState(false);
   const handlePwView = () => {
     setIsPwView(!ispwView);
   };
+
+  // 나이 input 입력값 -> 검사 후 -> state에 저장
+  // const handleAge = (e) => {
+  //   const regexp = /^[0-9]+$/;
+  //   if (regexp.test(e.target.value)) {
+  //     setAgeValue(e.target.value);
+  //     console.log(ageValue);
+  //   }
+  // };
+
+  // const checkNum = (e) => {
+  //   console.log(e);
+  //   if (e.keyCode >= 48 && e.keyCode <= 57) {
+  //     return true;
+  //   }
+  //   return false;
+  // };
+  // function checkNum(event) {
+  //   const num = event.key; // 사용자가 입력한 key 받기
+
+  //   if (
+  //     (num >= 0 && num < 10) ||
+  //     num === "Backspace" ||
+  //     num === "ArrowLeft" ||
+  //     num === "ArrowRight"
+  //   ) {
+  //     return true;
+  //   }
+  //   event.preventDefault();
+  //   return false;
+  //   // 이벤트 더 진행시키는 걸 중지하겠다
+  // }
+
+  const onlyNumber = (e) => {
+    console.log(e.type, e.target.value);
+    const regexp = /\D/g;
+    e.target.value = e.target.value.replace(regexp, "");
+  };
+
   return (
     <StyledSingUp className="singUp">
       <div className="singUp-wrap">
@@ -29,6 +87,10 @@ export default function SignUp({ toggleSignUp }) {
                 type="email"
                 id="email"
                 placeholder="이메일을 입력하세요"
+                autoComplete="off"
+                // value={emailValue}
+                // onChange={handleEmail}
+                required
               />
             </div>
             <div>
@@ -39,6 +101,8 @@ export default function SignUp({ toggleSignUp }) {
                   type="password"
                   id="pw"
                   placeholder="비밀번호를 입력하세요"
+                  autoComplete="off"
+                  required
                 />
                 {!ispwView ? (
                   <div className="pwImg on">
@@ -73,7 +137,18 @@ export default function SignUp({ toggleSignUp }) {
             </div>
             <div>
               <label htmlFor="age">나이</label>
-              <input type="text" id="age" placeholder="나이를 입력하세요" />
+              <input
+                className="ageInput"
+                id="age"
+                type="text"
+                placeholder="나이를 입력하세요"
+                value={ageValue}
+                onChange={handleAge}
+                onInput={onlyNumber}
+                autoComplete="off"
+                maxLength="2"
+                required
+              />
             </div>
           </section>
           <section className="btnWrap">
@@ -189,12 +264,17 @@ const StyledSingUp = styled.section`
         margin: 1px 0px 7px;
         border-radius: 16px;
         border: 2px solid var(--color-border-container);
-      }
-      input::placeholder {
-        font-size: 1.6rem;
-      }
-      input:focus {
-        outline: 4px solid #92c1ff;
+
+        &::placeholder {
+          font-size: 1.6rem;
+        }
+        &:focus {
+          outline: 4px solid #92c1ff;
+        }
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
       }
 
       .pwInputWrap {
