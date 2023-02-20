@@ -8,57 +8,12 @@ export default function SignUp({ toggleSignUp }) {
   const handleAge = (e) => {
     setAgeValue(e.target.value);
   };
-  // // 이메일 input 입력값 -> state에 저장
-  // const [emailValue, setEmailValue] = useState("");
-  // const [ageValue, setAgeValue] = useState("");
-
-  // const handleEmail = (e) => {
-  //   setEmailValue(e.target.value);
-  // };
-
-  // // 비밀번호 input 입력값 -> state에 저장
-  // const [pwValue, setPwValue] = useState("");
-  // const handlePw = (e) => {
-  //   setPwValue(e.target.value);
-  // }
 
   // 비밀번호 보이기/숨기기 아이콘
   const [ispwView, setIsPwView] = useState(false);
   const handlePwView = () => {
     setIsPwView(!ispwView);
   };
-
-  // 나이 input 입력값 -> 검사 후 -> state에 저장
-  // const handleAge = (e) => {
-  //   const regexp = /^[0-9]+$/;
-  //   if (regexp.test(e.target.value)) {
-  //     setAgeValue(e.target.value);
-  //     console.log(ageValue);
-  //   }
-  // };
-
-  // const checkNum = (e) => {
-  //   console.log(e);
-  //   if (e.keyCode >= 48 && e.keyCode <= 57) {
-  //     return true;
-  //   }
-  //   return false;
-  // };
-  // function checkNum(event) {
-  //   const num = event.key; // 사용자가 입력한 key 받기
-
-  //   if (
-  //     (num >= 0 && num < 10) ||
-  //     num === "Backspace" ||
-  //     num === "ArrowLeft" ||
-  //     num === "ArrowRight"
-  //   ) {
-  //     return true;
-  //   }
-  //   event.preventDefault();
-  //   return false;
-  //   // 이벤트 더 진행시키는 걸 중지하겠다
-  // }
 
   const onlyNumber = (e) => {
     console.log(e.type, e.target.value);
@@ -98,41 +53,31 @@ export default function SignUp({ toggleSignUp }) {
               <div className="pwInputWrap">
                 <input
                   className="pwInput"
-                  type="password"
+                  type={ispwView ? "text" : "password"}
                   id="pw"
                   placeholder="비밀번호를 입력하세요"
                   autoComplete="off"
                   required
                 />
-                {!ispwView ? (
-                  <div className="pwImg on">
-                    <button
-                      className="pwImgFrame"
-                      type="button"
-                      onClick={handlePwView}
-                    >
-                      <img
-                        src={`${process.env.PUBLIC_URL}/images/bottom/eyeOn.svg`}
-                        alt="비밀번호 보기"
-                      />
-                      <p className="pwOnTooltip">비밀번호 보기</p>
-                    </button>
-                  </div>
-                ) : (
-                  <div className="pwImg off">
-                    <button
-                      className="pwImgFrame"
-                      type="button"
-                      onClick={handlePwView}
-                    >
-                      <img
-                        src={`${process.env.PUBLIC_URL}/images/bottom/eyeOff.svg`}
-                        alt="비밀번호 보기"
-                      />
-                      <p className="pwOnTooltip">비밀번호 숨기기</p>
-                    </button>
-                  </div>
-                )}
+                <div className="pwImg">
+                  <button
+                    className="pwImgFrame"
+                    type="button"
+                    onClick={handlePwView}
+                  >
+                    <img
+                      src={
+                        !ispwView
+                          ? `${process.env.PUBLIC_URL}/images/bottom/eyeOn.svg`
+                          : `${process.env.PUBLIC_URL}/images/bottom/eyeOff.svg`
+                      }
+                      alt="비밀번호 보기"
+                    />
+                    <p className="pwOnTooltip">
+                      {!ispwView ? "비밀번호 보기" : "비밀번호 숨기기"}
+                    </p>
+                  </button>
+                </div>
               </div>
             </div>
             <div>
